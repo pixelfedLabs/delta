@@ -12,7 +12,7 @@
   <meta property="og:url" content="https://pixelfed.org">
   <meta property="og:description" content="Federated Image Sharing">
 
-  <link rel="dns-prefetch" href="//pixelfed.nyc3.digitaloceanspaces.com">
+  <link rel="dns-prefetch" href="//pixelfed.nyc3.cdn.digitaloceanspaces.com">
   <link rel="dns-prefetch" href="//use.fontawesome.com">
 
   <link href="{{mix('css/app.css')}}" rel="stylesheet">
@@ -80,9 +80,9 @@
 
       <div class="container text-center pb-5 mb-5  animated fadeInUp">
         <picture>
-          <img src="https://pixelfed.nyc3.digitaloceanspaces.com/media/Screen%20Shot%202019-02-05%20at%206.34.59%20PM.png?v=2" class="img-fluid rounded shadow-lg" id="carousel_features_img_1">
-          <img src="https://pixelfed.nyc3.cdn.digitaloceanspaces.com/media/Screen%20Shot%202019-05-14%20at%208.15.02%20PM.png" class="d-none img-fluid rounded shadow-lg" id="carousel_features_img_2">
-          <img src="https://pixelfed.nyc3.cdn.digitaloceanspaces.com/media/Screen%20Shot%202019-05-14%20at%208.12.27%20PM.png" class="d-none img-fluid rounded shadow-lg" id="carousel_features_img_3">
+          <img src="https://pixelfed.nyc3.cdn.digitaloceanspaces.com/media/Screen%20Shot%202019-02-05%20at%206.34.59%20PM.png?v=2" class="img-fluid rounded shadow-lg" id="carousel_features_img_1">
+          <img src="https://pixelfed.nyc3.cdn.cdn.digitaloceanspaces.com/media/Screen%20Shot%202019-05-14%20at%208.15.02%20PM.png" class="d-none img-fluid rounded shadow-lg" id="carousel_features_img_2">
+          <img src="https://pixelfed.nyc3.cdn.cdn.digitaloceanspaces.com/media/Screen%20Shot%202019-05-14%20at%208.12.27%20PM.png" class="d-none img-fluid rounded shadow-lg" id="carousel_features_img_3">
         </picture>
       </div>
 
