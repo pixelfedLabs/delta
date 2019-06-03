@@ -7,27 +7,33 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+$(document).ready(function() {
+	$('.preview-btn').on('click', function(e) {
+		let el = $(this);
+		if(el.hasClass('text-primary')) {
+			return;
+		}
+		$('.preview-btn, .preview-btn i').removeClass('text-primary text-dark');
+		el.addClass('text-primary');
+		let id = el.data('id');
+		switch(id) {
+			case 1:
+			$('#carousel_features_img_1').removeClass('d-none');
+			$('#carousel_features_img_2').addClass('d-none');
+			$('#carousel_features_img_3').addClass('d-none');
+			break;
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
+			case 2:
+			$('#carousel_features_img_1').addClass('d-none');
+			$('#carousel_features_img_2').removeClass('d-none');
+			$('#carousel_features_img_3').addClass('d-none');
+			break;
 
-// const files = require.context('./', true, /\.vue$/i);
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
-
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-const app = new Vue({
-    el: '#app'
+			case 3:
+			$('#carousel_features_img_1').addClass('d-none');
+			$('#carousel_features_img_2').addClass('d-none');
+			$('#carousel_features_img_3').removeClass('d-none');
+			break;
+		}
+	})
 });
