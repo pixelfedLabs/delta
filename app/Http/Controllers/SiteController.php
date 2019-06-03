@@ -18,7 +18,7 @@ class SiteController extends Controller
 
 	public function join()
 	{
-		$res = Cache::remember('pxorg:page:join', now()->addSeconds(1), function() {
+		$res = Cache::remember('pxorg:page:join', now()->addHours(12), function() {
 			return View::make('join.home')->render();
 		});
 
