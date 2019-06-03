@@ -7,12 +7,21 @@ use Cache, View;
 
 class SiteController extends Controller
 {
-    public function welcome()
-    {
-    	$res = Cache::remember('pxorg:page:welcome', now()->addHours(12), function() {
-    		return View::make('welcome')->render();
-    	});
+	public function welcome()
+	{
+		$res = Cache::remember('pxorg:page:welcome', now()->addHours(12), function() {
+			return View::make('welcome')->render();
+		});
 
-    	return $res;
-    }
+		return $res;
+	}
+
+	public function join()
+	{
+		$res = Cache::remember('pxorg:page:join', now()->addSeconds(1), function() {
+			return View::make('join.home')->render();
+		});
+
+		return $res;
+	}
 }
