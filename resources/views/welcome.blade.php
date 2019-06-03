@@ -5,7 +5,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Pixelfed</title>
+        <meta property="og:site_name" content="Pixelfed">
+        <meta property="og:title" content="Pixelfed">
+        <meta property="og:type" content="article">
+        <meta property="og:url" content="https://pixelfed.org">
+        <meta property="og:description" content="Federated Image Sharing">
 
+        <link rel="shortcut icon" type="image/png" href="/img/favicon.png?v=2">
+        <link rel="apple-touch-icon" type="image/png" href="/img/favicon.png?v=2">
+        
+        <link rel="dns-prefetch" href="//pixelfed.nyc3.digitaloceanspaces.com">
+        <link rel="dns-prefetch" href="//use.fontawesome.com">
         <style>
             html, body {
                 background-color: #fff;
