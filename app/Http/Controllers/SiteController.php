@@ -24,4 +24,9 @@ class SiteController extends Controller
 
 		return $res;
 	}
+
+	public function dashboardRedirect()
+	{
+		return redirect('https://' . config('delta.domain.app'));
+	}
 }
