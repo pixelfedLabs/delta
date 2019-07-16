@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1a04c5dd7079cbc4adc9c84a588818e3",
+    "content-hash": "585b813cc3e548de3af0ead2b3911bbe",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1097,6 +1097,62 @@
                 "type"
             ],
             "time": "2015-07-25T16:39:46+00:00"
+        },
+        {
+            "name": "pixelfed/laravel-snowflake",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pixelfed/laravel-snowflake.git",
+                "reference": "69255870dcbf949feac889dfc09180a6fef77f6d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pixelfed/laravel-snowflake/zipball/69255870dcbf949feac889dfc09180a6fef77f6d",
+                "reference": "69255870dcbf949feac889dfc09180a6fef77f6d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~3.0",
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Pixelfed\\Snowflake\\SnowflakeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Pixelfed\\Snowflake\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Koki Asai",
+                    "email": "koki@asai.email"
+                },
+                {
+                    "name": "Daniel Supernault",
+                    "email": "hello@pixelfed.org"
+                }
+            ],
+            "description": "Snowflake for Laravel.",
+            "homepage": "https://github.com/pixelfed/laravel-snowflake",
+            "keywords": [
+                "laravel",
+                "snowflake"
+            ],
+            "time": "2019-03-12T05:13:49+00:00"
         },
         {
             "name": "predis/predis",
