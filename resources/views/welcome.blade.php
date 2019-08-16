@@ -262,7 +262,7 @@
               <i class="fab fa-sass fa-4x px-3"></i>
               <i class="fab fa-vuejs fa-4x px-3"></i>
             </p>
-            <p class="h3 font-ptsn">Run your <a href="https://docs.pixelfed.org/master/installation.html">own server</a>, or <a href="/join">join one</a></p>
+            <p class="h3 font-ptsn">Run your <a href="https://docs.pixelfed.org/installing-pixelfed/">own server</a>, or <a href="/join">join one</a></p>
           </div>
         </div>
       </div>
@@ -289,7 +289,7 @@
           <ul class="list-unstyled text-small">
             <li><a class="text-muted" href="/join">Join</a></li>
             <li><a class="text-muted" href="https://pixelfed.social/site/help" rel="nofollow noreferrer noopener">Help Center</a></li>
-            <li><a class="text-muted" href="https://docs.pixelfed.org/master/installation.html">Install Pixelfed</a></li>
+            <li><a class="text-muted" href="https://docs.pixelfed.org/installing-pixelfed/">Install Pixelfed</a></li>
             <li><a class="text-muted" href="https://github.com/pixelfed/pixelfed/issues/new">Report an Issue</a></li>
           </ul>
         </div>
