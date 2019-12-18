@@ -1,60 +1,77 @@
 body, button, input, textarea {
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",
-                 Roboto,Helvetica,Arial,sans-serif;
-}
-
-body {
-  background: #f4f8fe !important;
-  text-rendering: optimizeLegibility;
+	font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",
+	Roboto,Helvetica,Arial,sans-serif;
 }
 
 .font-pts {
-  font-family: 'PT Sans', sans-serif;
-  text-rendering: optimizeLegibility;
+	font-family: 'PT Sans', sans-serif;
+	text-rendering: optimizeLegibility;
 }
 
 .font-ptsn {
-  font-family: 'Montserrat', sans-serif;
-  text-rendering: optimizeLegibility;
+	font-family: 'Montserrat', sans-serif;
+	text-rendering: optimizeLegibility;
 }
 
 .cursor-pointer {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 .bg-groovy {
-  background-color: #b4c2f7;
-  background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h16v2h-6v6h6v8H8v-6H2v6H0V0zm4 4h2v2H4V4zm8 8h2v2h-2v-2zm-8 0h2v2H4v-2zm8-8h2v2h-2V4z' fill='%233958b8' fill-opacity='0.07' fill-rule='evenodd'/%3E%3C/svg%3E");
+	background-color: #b4c2f7;
+	background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h16v2h-6v6h6v8H8v-6H2v6H0V0zm4 4h2v2H4V4zm8 8h2v2h-2v-2zm-8 0h2v2H4v-2zm8-8h2v2h-2V4z' fill='%233958b8' fill-opacity='0.07' fill-rule='evenodd'/%3E%3C/svg%3E");
 }
+
 .bg-kashmir {
-  background: #614385;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #516395, #614385);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #516395, #614385); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	background: #614385;
+	background: -webkit-linear-gradient(to right, #516395, #614385);
+	background: linear-gradient(to right, #516395, #614385);
 }
+
 .bg-portrait {
-  background: #edf2f7;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #edf2f7, #e2e8f0);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #edf2f7, #e2e8f0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	background: #edf2f7;
+	background: -webkit-linear-gradient(to right, #edf2f7, #e2e8f0);
+	background: linear-gradient(to right, #edf2f7, #e2e8f0);
 }
 
 .bg-skew {
-  background: #fff;  /* fallback for old browsers */
-  transform: skewY(-3deg);
-  transform-origin: top left;
+	background: #fff;
+	transform: skewY(-3deg);
+	transform-origin: top left;
 }
 
 .bg-timber {
-  background: #000428;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #004e92, #000428);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #004e92, #000428); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	background: #000428;
+	background: -webkit-linear-gradient(to right, #004e92, #000428);
+	background: linear-gradient(to right, #004e92, #000428);
 }
 
 .bg-skew .container {
-  transform: skewY(3deg);
+	transform: skewY(3deg);
 }
 
 .instance-img {
-  display:block;
-  width: 200px;
-  height: 250px;
+	display:block;
+	width: 200px;
+	height: 250px;
+}
+
+.square {
+	position: relative;
+	width: 100%;
+}
+
+.square::after {
+	content: "";
+	display: block;
+	padding-bottom: 100%;
+}
+
+.square-content {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 50%;
 }

@@ -19,6 +19,9 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   <link rel="shortcut icon" type="image/png" href="/img/favicon.png?v=2">
   <link rel="apple-touch-icon" type="image/png" href="/img/favicon.png?v=2">
+  <style type="text/css">
+     body { font-family: 'PT Sans', sans-serif;}
+  </style>
 </head>
 
 <body>

@@ -2,6 +2,6 @@
 
 @section('content')
 
-<instance-component></instance-component>
+<instance-component domain="{{$instance->domain}}"></instance-component>
 
 @endsection

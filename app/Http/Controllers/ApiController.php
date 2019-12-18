@@ -34,4 +34,12 @@ class ApiController extends Controller
 		
 		return $i->paginate(10);
 	}
+
+	public function instance(Request $request, $domain)
+	{
+		$instance = Instance::whereNotNull('approved_at')
+			->whereDomain($domain)
+			->firstOrFail();
+		return $instance;
+	}
 }

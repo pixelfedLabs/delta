@@ -45,7 +45,7 @@
 					<button type="button" class="btn btn-outline-secondary btn-block font-weight-bold" @click.prevent="applyFilters()">Apply Filters</button>
 				</p>	
 			</div>
-			<div v-if="instances.length" class="col-12 col-md-6">
+			<div v-if="instances.length" class="col-12 col-md-6 mb-4">
 				<div v-for="(instance, index) in instances" class="card rounded-lg bg-white shadow border-0 mb-4">
 					<div class="card-body p-0">
 						<div class="media">
@@ -84,8 +84,7 @@
 												</span>
 											</span>
 											<span>
-												<a v-if="instance.nodeinfo.openRegistrations == false" class="btn btn-danger font-weight-bold px-5 btn-lg disabled" disabled :href="'https://' + instance.domain + '/register'" rel="noreferrer noopener nofollow">Closed</a>
-												<a v-else class="btn btn-success font-weight-bold px-5 btn-lg" :href="'https://' + instance.domain + '/register'" rel="noreferrer noopener nofollow">Join</a>
+												<a class="btn btn-success font-weight-bold px-4 btn-lg" :href="'/instance/' + instance.domain">View</a>
 											</span>
 										</div>
 									</div>

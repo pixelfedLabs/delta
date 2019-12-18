@@ -22,7 +22,7 @@ class InstanceController extends Controller
     	$instance = Instance::whereDomain($domain)
     		->whereNotNull('approved_at')
     		->firstOrFail();
-    		
+
     	return view('instance.show', compact('instance'));
     }
 
