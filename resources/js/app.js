@@ -50,11 +50,11 @@ const app = new Vue({
 window.App = {
 	util: {
 		format: {
-			count: (function(count = 0, locale = 'en-GB', notation = 'compact') {
-				if(count < 1) {
-					return 0;
-				}
-				return new Intl.NumberFormat(locale, { notation: notation , compactDisplay: "short" }).format(count);
+			count: (function(count = 0) {
+				if (count < 1e3) return count;
+				if (count >= 1e3 && count < 1e6) return +(count / 1e3).toFixed(0) + "K";
+				if (count >= 1e6 && count < 1e9) return +(count / 1e6).toFixed(0) + "M";
+				if (count >= 1e9 && count < 1e12) return +(count / 1e9).toFixed(0) + "B";
 			})
 		}
 	}
