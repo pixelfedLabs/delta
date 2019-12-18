@@ -1,6 +1,9 @@
 <?php
 Route::domain(config('delta.domain.join'))->group(function() {
 	Route::get('/', 'InstanceController@index')->name('instances.all');
+
+	// Route::get('/instance/{domain}', 'InstanceController@show');
+
 	Route::group(['prefix' => 'api/v1'], function() {
 		Route::get('instances', 'ApiController@instances');
 	});

@@ -101,12 +101,14 @@
 				</div>
 			</div>
 			<div class="col-12 col-md-3">
-				<p class="d-flex justify-content-between align-items-center">
+				<!-- <p class="d-flex justify-content-between align-items-center">
 					<a class="btn btn-success btn-sm py-1 font-weight-bold disabled" href="#" disabled>Prev Page</a>
 					<a class="btn btn-success btn-sm py-1 font-weight-bold disabled" href="#" disabled>Next Page</a>
-				</p>
+				</p> -->
 				<div class="card card-body my-3 bg-transparent">
 					<p class="text-muted font-weight-bold mb-0 text-center">{{resultCount}} Results Found</p>
+					<hr>
+					<p class="text-muted font-weight-bold mb-0 text-center small">To learn how to add your instance, click <a href="https://socialhub.activitypub.rocks/t/pixelfed-instance-picker-launches-in-open-beta/412" rel="noopener nofollow noreferrer">here</a>.</p>
 				</div>
 			</div>
 		</div>
