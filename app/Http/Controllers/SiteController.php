@@ -9,7 +9,7 @@ class SiteController extends Controller
 {
 	public function welcome()
 	{
-		$res = Cache::remember('pxorg:page:welcome', now()->addMonths(1), function() {
+		$res = Cache::remember('pxorg:page:welcome', now()->addHours(12), function() {
 			return View::make('welcome')->render();
 		});
 
@@ -18,15 +18,10 @@ class SiteController extends Controller
 
 	public function join()
 	{
-		$res = Cache::remember('pxorg:page:join', now()->addMonths(1), function() {
+		$res = Cache::remember('pxorg:page:join', now()->addHours(12), function() {
 			return View::make('join.home')->render();
 		});
 
 		return $res;
-	}
-
-	public function dashboardRedirect()
-	{
-		return redirect('https://' . config('delta.domain.app'));
 	}
 }

@@ -37,3 +37,25 @@ $(document).ready(function() {
 		}
 	})
 });
+
+window.Vue = require('vue');
+
+const files = require.context('./', true, /\.vue$/i);
+files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
+
+const app = new Vue({
+    el: '#app',
+});
+
+window.App = {
+	util: {
+		format: {
+			count: (function(count = 0, locale = 'en-GB', notation = 'compact') {
+				if(count < 1) {
+					return 0;
+				}
+				return new Intl.NumberFormat(locale, { notation: notation , compactDisplay: "short" }).format(count);
+			})
+		}
+	}
+};

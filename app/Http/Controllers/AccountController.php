@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Instance;
 
 class AccountController extends Controller
 {
@@ -11,8 +12,10 @@ class AccountController extends Controller
 		$this->middleware('auth');
 	}
 
-	public function home()
+	public function home(Request $request)
 	{
-		return view('account.dashboard');
+		$uid = $request->user()->id;
+		$instances = Instance::whereUserId($uid)->paginate(10);
+		return view('account.dashboard', compact('instances'));
 	}
 }
