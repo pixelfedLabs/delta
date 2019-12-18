@@ -32,7 +32,7 @@ class ApiController extends Controller
 			$i->whereJsonContains('nodeinfo->metadata->config->uploader', 'video/mp4');
 		}
 		
-		return $i->paginate(10);
+		return $i->inRandomOrder()->paginate(10);
 	}
 
 	public function instance(Request $request, $domain)
