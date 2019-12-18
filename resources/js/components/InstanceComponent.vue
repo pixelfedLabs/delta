@@ -32,6 +32,7 @@
 			<div class="row">
 
 				<div class="col-md-4">
+
 					<div class="card bg-transparent mb-4">
 						<div class="card-body">
 							<p class="mb-0 text-center">
@@ -126,12 +127,9 @@ export default {
 		},
 
 		fetchTimeline() {
-			let apiUrl = 'https://' + this.domain + '/api/v1/timelines/public';
-			axios.get(apiUrl, {
-				params: {
-					limit: 20
-				}
-			})
+			let apiUrl = '/api/v1/instance/' + this.domain + '/timeline';
+
+			axios.get(apiUrl)
 			.then(res => {
 				let data = res.data;
 				this.timeline = data.filter(p => p.sensitive == false).splice(0,18);

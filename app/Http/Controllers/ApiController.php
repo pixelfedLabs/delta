@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Cache;
+use \Zttp\Zttp;
 use App\Instance;
 
 class ApiController extends Controller
@@ -41,5 +43,22 @@ class ApiController extends Controller
 			->whereDomain($domain)
 			->firstOrFail();
 		return $instance;
+	}
+
+	public function instanceTimeline(Request $request, $domain)
+	{
+		$instance = Instance::whereNotNull('approved_at')
+			->whereDomain($domain)
+			->firstOrFail();
+
+		$res = Cache::remember('instance:timeline:'.$instance->id, now()->addHours(12), function() use($domain){
+			$url = "https://{$domain}/api/v1/timelines/public";
+			$timeline = Zttp::get($url, [
+				'limit' => 20
+			]);
+			return $timeline->json();
+		});
+
+		return $res;
 	}
 }

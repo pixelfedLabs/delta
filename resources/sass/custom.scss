@@ -75,3 +75,16 @@ body, button, input, textarea {
 	background-size: cover;
 	background-position: 50%;
 }
+
+.text-lighter {
+	color:#B8C2CC !important;
+} 
+
+.btn-lighter {
+	border-color: #6c757d !important;
+}
+
+.btn-lighter:hover {
+	border-color: #6c757d !important;
+	background-color: transparent;
+}
