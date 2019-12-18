@@ -285,7 +285,6 @@
         <div class="col-12 col-md">
           <img src="/img/logo.svg" class="img-fluid mb-3" width="22px" height="22px">
           <small class="d-block text-muted font-ptsn">Pixelfed</small>
-          <small class="d-block mb-3 text-muted">Made in 🇨🇦</small>
         </div>
         <div class="col-6 col-md">
           <h5 class="font-ptsn">Resources</h5>

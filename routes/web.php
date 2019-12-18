@@ -8,10 +8,11 @@ Route::domain(config('delta.domain.join'))->group(function() {
 		Route::get('instance/{domain}/timeline', 'ApiController@instanceTimeline');
 		Route::get('instance/{domain}', 'ApiController@instance');
 		Route::get('instances', 'ApiController@instances');
+		Route::get('img-proxy', 'ApiController@imageProxy');
 	});
 });
 
-// Route::domain(config('delta.domain.landing'))->group(function() {
-// 	Route::get('/', 'SiteController@welcome');
-// 	Route::get('join', 'SiteController@join');
-// });
+Route::domain(config('delta.domain.landing'))->group(function() {
+	Route::get('/', 'SiteController@welcome');
+	Route::get('join', 'SiteController@join');
+});
