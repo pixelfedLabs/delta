@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Cache;
 use \Zttp\Zttp;
 use App\Instance;
+use Illuminate\Support\Str;
 
 class ApiController extends Controller
 {
@@ -52,13 +53,45 @@ class ApiController extends Controller
 			->firstOrFail();
 
 		$res = Cache::remember('instance:timeline:'.$instance->id, now()->addHours(12), function() use($domain){
-			$url = "https://{$domain}/api/v1/timelines/public";
-			$timeline = Zttp::get($url, [
-				'limit' => 20
-			]);
-			return $timeline->json();
+			$url = "https://{$domain}/api/v1/timelines/public?limit=20";
+			$timeline = Zttp::get($url);
+			$body = collect($timeline->json())
+			->filter(function($v, $k) {
+				return $v['sensitive'] == false && !empty($v['media_attachments']);
+			})->map(function($p, $k) {
+				$thumb = '/api/v1/img-proxy?resource=' . encrypt($p['media_attachments'][0]['preview_url']);
+				return [
+					'id' => $p['id'],
+					'url' => $p['url'],
+					'thumbnail' => $thumb
+				];
+			});
+			return $body->all();
 		});
 
 		return $res;
+	}
+
+	public function imageProxy(Request $request)
+	{
+		$resource = decrypt($request->input('resource'));
+
+		if(!$resource || !Str::endsWith($resource, ['.jpg', '.png', '.jpeg'])) {
+			abort(404, 'Invalid resource');
+		}
+		$mime = Str::endsWith($resource, '.png') ? 'image/png' : 'image/jpeg';
+		$hash = hash('sha512', $resource);
+
+		$res = Cache::remember('proxy:img:hash:' . $hash, now()->addHours(6), function() use($resource) {
+
+			$options  = ['http' => [
+				'user_agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36'
+				]
+			];
+			$context  = stream_context_create($options);
+			return file_get_contents($resource, false, $context);
+		});
+
+		return response($res)->header('Content-Type', $mime);
 	}
 }

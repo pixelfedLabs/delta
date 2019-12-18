@@ -76,7 +76,7 @@
 					<div v-else class="row">
 						<div v-for="(post, index) in timeline" class="col-12 col-md-4 cursor-pointer" @click="redirectPost(post)" style="margin-bottom:1.8rem;">
 							<div class="square">
-								<div class="square-content" v-bind:style="{ 'background-image': 'url(' + post.media_attachments[0].preview_url + ')' }"></div>
+								<div class="square-content" v-bind:style="{ 'background-image': 'url(' + post.thumbnail + ')' }"></div>
 							</div>			
 						</div>
 					</div>
@@ -132,7 +132,7 @@ export default {
 			axios.get(apiUrl)
 			.then(res => {
 				let data = res.data;
-				this.timeline = data.filter(p => p.sensitive == false).splice(0,18);
+				this.timeline = data;
 			})
 			.catch(err => {
 				this.timelineError = true;
