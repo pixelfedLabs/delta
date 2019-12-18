@@ -129,11 +129,12 @@ export default {
 			let apiUrl = 'https://' + this.domain + '/api/v1/timelines/public';
 			axios.get(apiUrl, {
 				params: {
-					limit: 9
+					limit: 20
 				}
 			})
 			.then(res => {
-				this.timeline = res.data;
+				let data = res.data;
+				this.timeline = data.filter(p => p.sensitive == false).splice(0,18);
 			})
 			.catch(err => {
 				this.timelineError = true;
