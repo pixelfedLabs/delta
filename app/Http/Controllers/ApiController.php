@@ -76,7 +76,7 @@ class ApiController extends Controller
 	{
 		$resource = decrypt($request->input('resource'));
 
-		if(!$resource || !Str::endsWith($resource, ['.jpg', '.png', '.jpeg'])) {
+		if(!$resource || !Str::startsWith($resource, 'https://') || !Str::endsWith($resource, ['.jpg', '.png', '.jpeg'])) {
 			abort(404, 'Invalid resource');
 		}
 		$mime = Str::endsWith($resource, '.png') ? 'image/png' : 'image/jpeg';

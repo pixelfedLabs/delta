@@ -16,3 +16,7 @@ Route::domain(config('delta.domain.landing'))->group(function() {
 	Route::get('/', 'SiteController@welcome');
 	Route::get('join', 'SiteController@join');
 });
+
+Route::domain(config('delta.domain.img-proxy'))->group(function() {
+	Route::get('img-proxy', 'ApiController@imageProxy');
+});
