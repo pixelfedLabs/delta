@@ -38,7 +38,7 @@ class FetchInstances extends Command
      */
     public function handle()
     {
-        $instances = Instance::get();
+        $instances = Instance::whereNotNull('approved_at')->get();
 
         foreach($instances as $instance) {
             $this->call('instance:fetch', ['domain' => $instance->domain]);

@@ -50,13 +50,16 @@ class FetchNodeinfo extends Command
         }
         $url = "https://{$domain}/api/nodeinfo/2.0.json";
         $response = Zttp::get($url);
-        if($response->status() != 200) {
-            $this->error('invalid response');
-            return;
-        }
         $body = $response->body();
         $json = $response->json();
         $instance = Instance::whereDomain($domain)->firstOrFail();
+        if($response->status() != 200 || $json['software']['name'] != 'pixelfed') {
+            $instance->approved_at = null;
+            $instance->save();
+            // todo: remove instance after XX attempts
+            $this->error('invalid response');
+            return;
+        }
         $instance->nodeinfo = $body;
         $instance->user_count = $json['usage']['users']['total'];
         $instance->post_count = $json['usage']['localPosts'];
