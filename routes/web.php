@@ -18,5 +18,6 @@ Route::domain(config('delta.domain.landing'))->group(function() {
 });
 
 Route::domain(config('delta.domain.img-proxy'))->group(function() {
+	Route::view('/', 'proxy.index');
 	Route::get('img-proxy', 'ApiController@imageProxy');
 });

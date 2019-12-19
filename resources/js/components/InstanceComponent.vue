@@ -32,7 +32,24 @@
 			<div class="row">
 
 				<div class="col-md-4">
-
+					<!-- <div class="text-center mb-4 d-flex justify-content-between align-items-center px-4">
+						<span>
+							<div>
+								<i class="fas fa-star fa-lg text-success"></i>
+								<i class="fas fa-star fa-lg text-success"></i>
+								<i class="fas fa-star fa-lg text-success"></i>
+								<i class="fas fa-star fa-lg text-success"></i>
+								<i class="fas fa-star fa-lg text-lighter"></i>
+							</div>
+							<div class="small text-muted font-weight-bold pt-1">
+								14 Reviews
+							</div>
+						</span>
+						<span>
+							<p class="mb-0 h3 font-weight-light">4.2/5</p>
+							<p class="mb-0 text-muted small font-weight-bold pt-1">RATING</p>
+						</span>	
+					</div> -->
 					<div class="card bg-transparent mb-4">
 						<div class="card-body">
 							<p class="mb-0 text-center">

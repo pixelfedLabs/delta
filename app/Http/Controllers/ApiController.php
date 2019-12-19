@@ -59,7 +59,7 @@ class ApiController extends Controller
 			->filter(function($v, $k) {
 				return $v['sensitive'] == false && !empty($v['media_attachments']);
 			})->map(function($p, $k) {
-				$thumb = '/api/v1/img-proxy?resource=' . encrypt($p['media_attachments'][0]['preview_url']);
+				$thumb = 'https://px03-camo.pixelfedcdn.com/img-proxy?resource=' . encrypt($p['media_attachments'][0]['preview_url']);
 				return [
 					'id' => $p['id'],
 					'url' => $p['url'],
@@ -82,7 +82,7 @@ class ApiController extends Controller
 		$mime = Str::endsWith($resource, '.png') ? 'image/png' : 'image/jpeg';
 		$hash = hash('sha512', $resource);
 
-		$res = Cache::remember('proxy:img:hash:' . $hash, now()->addHours(6), function() use($resource) {
+		$res = Cache::remember('proxy:img:hash:' . $hash, now()->addMinutes(30), function() use($resource) {
 
 			$options  = ['http' => [
 				'user_agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36'
