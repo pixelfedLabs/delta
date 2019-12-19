@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use \Zttp\Zttp;
 use App\Instance;
+use App\InstanceScan;
 
 class FetchNodeinfo extends Command
 {
@@ -60,5 +61,14 @@ class FetchNodeinfo extends Command
         $instance->user_count = $json['usage']['users']['total'];
         $instance->post_count = $json['usage']['localPosts'];
         $instance->save();
+
+        $scan = new InstanceScan;
+        $scan->code - $response->status();
+        $scan->instance_id = $instance->id;
+        $scan->domain = $instance->domain;
+        $scan->user_count = $instance->user_count;
+        $scan->post_count = $instance->post_count;
+        $scan->nodeinfo = $body;
+        $scan->save();
     }
 }

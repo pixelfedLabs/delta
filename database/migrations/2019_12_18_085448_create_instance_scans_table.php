@@ -15,7 +15,8 @@ class CreateInstanceScansTable extends Migration
     {
         Schema::create('instance_scans', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('instance_id')->unsigned()->nullable();
+            $table->integer('code')->nullable()->index();
+            $table->bigInteger('instance_id')->unsigned()->nullable()->index();
             $table->string('domain')->nullable()->index();
             $table->bigInteger('user_count')->unsigned()->nullable();
             $table->bigInteger('post_count')->unsigned()->nullable();
