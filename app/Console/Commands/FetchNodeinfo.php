@@ -63,7 +63,7 @@ class FetchNodeinfo extends Command
         $instance->save();
 
         $scan = new InstanceScan;
-        $scan->code - $response->status();
+        $scan->code = $response->status();
         $scan->instance_id = $instance->id;
         $scan->domain = $instance->domain;
         $scan->user_count = $instance->user_count;
