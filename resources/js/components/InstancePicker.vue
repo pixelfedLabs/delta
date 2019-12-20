@@ -74,10 +74,12 @@
 					<div class="card-body p-0">
 						<div class="media">
 							<div class="d-none d-md-flex bg-portrait instance-img flex-column justify-content-center align-items-center">
-								<div>
-									<p class="text-center mb-1">
-										<img v-for="(p, i) in instance.timeline" class="m-1 cursor-pointer" :src="p.thumbnail" width="75px" height="75px;" @click="redirect(p.url)">
-									</p>
+								<div class="text-center">
+									<div v-for="(p, i) in instance.timeline" class="d-inline-block m-1 cursor-pointer" @click="redirect(p.url)">
+										<div class="square" style="width:75px; height:75px;">
+											<div class="square-content" v-bind:style="{ 'background-image': 'url(' + p.thumbnail + ')' }"></div>
+										</div>	
+									</div>
 								</div>
 							</div>
 							<div class="media-body d-flex flex-column" style="width:100%;height: 280px;">
