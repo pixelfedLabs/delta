@@ -9,6 +9,7 @@ Route::domain(config('delta.domain.join'))->group(function() {
 		Route::get('instance/{domain}', 'ApiController@instance');
 		Route::get('instances', 'ApiController@instances');
 		Route::get('img-proxy', 'ApiController@imageProxy');
+		Route::get('stats', 'ApiController@stats');
 	});
 });
 

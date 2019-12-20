@@ -17,11 +17,16 @@ class ApiController extends Controller
 			'latestVersionOnly' => 'nullable',
 			'allowsVideos' => 'nullable',
 			'openRegistration' => 'nullable',
+			'albumSizeRange' => 'required|integer|min:0|max:20',
+			'fileSizeLimit'  => 'integer|min:1|max:100'
 		]);
+
+		$albumLimit = (int) $request->input('albumSizeRange');
 
 		$i = Instance::query();
 
-		$i->whereNotNull('approved_at');
+		$i->whereNotNull('approved_at')
+		->where('nodeinfo->metadata->config->uploader->album_limit', '>=', $albumLimit);
 
 		if($request->openRegistration == 'true') {
 			$i->where('nodeinfo->openRegistrations', true);
@@ -32,8 +37,14 @@ class ApiController extends Controller
 		}
 
 		if($request->allowsVideos == 'true') {
-			$i->whereJsonContains('nodeinfo->metadata->config->uploader', 'video/mp4');
+			$i->where('nodeinfo->metadata->config->uploader->media_types', 'like', '%mp4%');
 		}
+
+		if($request->input('fileSizeLimit') !== 15) {
+			$sizeLimit = $request->input('fileSizeLimit') * 1000;
+			$i->where('nodeinfo->metadata->config->uploader->max_photo_size', '>=', $sizeLimit);
+		}
+
 		
 		return $i->paginate(10);
 	}
@@ -48,6 +59,10 @@ class ApiController extends Controller
 
 	public function instanceTimeline(Request $request, $domain)
 	{
+		$this->validate($request, [
+			'limit' => 'nullable|integer|min:1|max:20'
+		]);
+
 		$instance = Instance::whereNotNull('approved_at')
 			->whereDomain($domain)
 			->firstOrFail();
@@ -66,8 +81,12 @@ class ApiController extends Controller
 					'thumbnail' => $thumb
 				];
 			});
-			return $body->all();
+			return $body->toArray();
 		});
+
+		if($request->input('limit')) {
+			$res = array_slice($res, 0, $request->limit);
+		}
 
 		return $res;
 	}
@@ -93,5 +112,16 @@ class ApiController extends Controller
 		});
 
 		return response($res)->header('Content-Type', $mime);
+	}
+
+	public function stats(Request $request)
+	{
+		return Cache::remember('instances:stats', now()->addMinutes(30), function() {
+			return [
+				'post_count' => Instance::sum('post_count'),
+				'user_count' => Instance::sum('user_count'),
+				'instance_count' => Instance::whereNotNull('approved_at')->count(),
+			];
+		});
 	}
 }
