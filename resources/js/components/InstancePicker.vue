@@ -14,7 +14,7 @@
 		<div class="row mb-3">
 			<div class="col-12 py-1 border-bottom d-flex justify-content-between align-items-center">
 				<p class="h1 font-weight-light">Instances</p>
-				<div>
+				<div class="d-none d-md-block">
 					<span class="d-inline-block mr-5 text-center">
 						<p class="h3 font-weight-light mb-0">{{formatCount(stats.user_count)}}</p>
 						<div class="small text-muted">USERS</div>
