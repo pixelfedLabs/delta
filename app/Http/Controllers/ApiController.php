@@ -46,7 +46,7 @@ class ApiController extends Controller
 		}
 
 		
-		return $i->paginate(10);
+		return $i->paginate(20);
 	}
 
 	public function instance(Request $request, $domain)
