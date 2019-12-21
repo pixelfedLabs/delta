@@ -21,6 +21,7 @@ class InstanceController extends Controller
     {
     	$instance = Instance::whereDomain($domain)
     		->whereNotNull('approved_at')
+            ->whereIn('nodeinfo->software->version', ['0.10.5','0.10.6'])
     		->firstOrFail();
 
     	return view('instance.show', compact('instance'));

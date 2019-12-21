@@ -45,7 +45,6 @@ class ApiController extends Controller
 			$i->where('nodeinfo->metadata->config->uploader->max_photo_size', '>=', $sizeLimit);
 		}
 
-		
 		return $i->paginate(20);
 	}
 
@@ -53,7 +52,9 @@ class ApiController extends Controller
 	{
 		$instance = Instance::whereNotNull('approved_at')
 			->whereDomain($domain)
+			->whereIn('nodeinfo->software->version', ['0.10.5','0.10.6'])
 			->firstOrFail();
+			
 		return $instance;
 	}
 
@@ -67,7 +68,10 @@ class ApiController extends Controller
 			->whereDomain($domain)
 			->firstOrFail();
 
-		$res = Cache::remember('instance:timeline:'.$instance->id, now()->addHours(12), function() use($domain){
+		$key = 'delta:instance:timeline:' . $instance->id;
+		$ttl = now()->addDays(12);
+
+		$res = Cache::remember($key, $ttl, function () use ($domain) {
 			$url = "https://{$domain}/api/v1/timelines/public?limit=20";
 			$timeline = Zttp::get($url);
 			$body = collect($timeline->json())
@@ -85,7 +89,7 @@ class ApiController extends Controller
 		});
 
 		if($request->input('limit')) {
-			$res = array_slice($res, 0, $request->limit);
+			$res = array_slice($res, 0, (int) $request->limit);
 		}
 
 		return $res;
@@ -101,10 +105,13 @@ class ApiController extends Controller
 		$mime = Str::endsWith($resource, '.png') ? 'image/png' : 'image/jpeg';
 		$hash = hash('sha512', $resource);
 
-		$res = Cache::remember('proxy:img:hash:' . $hash, now()->addMinutes(30), function() use($resource) {
+		$key = 'delta:proxy:img:hash:' . $hash;
+		$ttl = now()->addHours(6);
 
-			$options  = ['http' => [
-				'user_agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36'
+		$res = Cache::remember($key, $ttl, function () use ($resource) {
+			$options  = [
+				'http' => [
+					'user_agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36'
 				]
 			];
 			$context  = stream_context_create($options);
@@ -116,7 +123,7 @@ class ApiController extends Controller
 
 	public function stats(Request $request)
 	{
-		return Cache::remember('instances:stats', now()->addMinutes(30), function() {
+		return Cache::remember('instances:stats', now()->addHours(12), function() {
 			return [
 				'post_count' => Instance::sum('post_count'),
 				'user_count' => Instance::sum('user_count'),
