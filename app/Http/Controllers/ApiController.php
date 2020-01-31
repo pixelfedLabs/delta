@@ -7,6 +7,7 @@ use Cache;
 use \Zttp\Zttp;
 use App\Instance;
 use Illuminate\Support\Str;
+use App\Services\PixelfedVersions;
 
 class ApiController extends Controller
 {
@@ -33,7 +34,7 @@ class ApiController extends Controller
 		}
 
 		if($request->latestVersionOnly == 'true') {
-			$i->where('nodeinfo->software->version', '0.10.7');
+			$i->where('nodeinfo->software->version', PixelfedVersions::latest());
 		}
 
 		if($request->allowsVideos == 'true') {
@@ -52,7 +53,7 @@ class ApiController extends Controller
 	{
 		$instance = Instance::whereNotNull('approved_at')
 			->whereDomain($domain)
-			->whereIn('nodeinfo->software->version', ['0.10.5','0.10.6', '0.10.7'])
+			->whereIn('nodeinfo->software->version', PixelfedVersions::get())
 			->firstOrFail();
 			
 		return $instance;

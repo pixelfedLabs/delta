@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services\PixelfedVersions;
 use App\Instance;
 
 class InstanceController extends Controller
@@ -21,7 +22,7 @@ class InstanceController extends Controller
     {
     	$instance = Instance::whereDomain($domain)
     		->whereNotNull('approved_at')
-            ->whereIn('nodeinfo->software->version', ['0.10.5','0.10.6', '0.10.7'])
+            ->whereIn('nodeinfo->software->version', PixelfedVersions::get())
     		->firstOrFail();
 
     	return view('instance.show', compact('instance'));
