@@ -42,12 +42,12 @@ class FetchNodeinfo extends Command
     {
         $domain = $this->argument('domain');
 
-        $validator = dns_get_record($domain);
+        // $validator = dns_get_record($domain);
 
-        if(count($validator) == 0) {
-            $this->error('invalid domain');
-            return;
-        }
+        // if(count($validator) == 0) {
+        //     $this->error('invalid domain');
+        //     return;
+        // }
         $url = "https://{$domain}/api/nodeinfo/2.0.json";
         $response = Zttp::get($url);
         $body = $response->body();
