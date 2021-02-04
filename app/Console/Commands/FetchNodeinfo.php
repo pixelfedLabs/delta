@@ -41,15 +41,43 @@ class FetchNodeinfo extends Command
     public function handle()
     {
         $domain = $this->argument('domain');
-
-        // $validator = dns_get_record($domain);
-
-        // if(count($validator) == 0) {
-        //     $this->error('invalid domain');
-        //     return;
-        // }
         $url = "https://{$domain}/api/nodeinfo/2.0.json";
-        $response = Zttp::get($url);
+
+        try {
+            $response = Zttp::timeout(60)->get($url);
+        } catch (\Zttp\ConnectionException $e) {
+            $instance = Instance::whereDomain($host)->first();
+            if($instance) {
+                $instance->approved_at = null;
+                $instance->save();
+
+                $scan = new InstanceScan;
+                $scan->code = $response->status();
+                $scan->instance_id = $instance->id;
+                $scan->domain = $instance->domain;
+                $scan->user_count = $instance->user_count;
+                $scan->post_count = $instance->post_count;
+                $scan->nodeinfo = $body;
+                $scan->save();
+            }
+            return 1;
+        } catch (\GuzzleHttp\Exception\RequestException $e) {
+            $instance = Instance::whereDomain($host)->first();
+            if($instance) {
+                $instance->approved_at = null;
+                $instance->save();
+
+                $scan = new InstanceScan;
+                $scan->code = $response->status();
+                $scan->instance_id = $instance->id;
+                $scan->domain = $instance->domain;
+                $scan->user_count = $instance->user_count;
+                $scan->post_count = $instance->post_count;
+                $scan->nodeinfo = $body;
+                $scan->save();
+            }
+            return 1;
+        }
         $body = $response->body();
         $json = $response->json();
         $instance = Instance::whereDomain($domain)->firstOrFail();
@@ -58,7 +86,7 @@ class FetchNodeinfo extends Command
             $instance->save();
             // todo: remove instance after XX attempts
             $this->error('invalid response');
-            return;
+            return 1;
         }
         $instance->nodeinfo = $body;
         $instance->user_count = $json['usage']['users']['total'];
@@ -73,5 +101,7 @@ class FetchNodeinfo extends Command
         $scan->post_count = $instance->post_count;
         $scan->nodeinfo = $body;
         $scan->save();
+
+        return 1;
     }
 }
