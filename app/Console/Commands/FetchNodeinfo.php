@@ -81,7 +81,7 @@ class FetchNodeinfo extends Command
         $body = $response->body();
         $json = $response->json();
         $instance = Instance::whereDomain($domain)->firstOrFail();
-        if($response->status() != 200 || $json['software']['name'] != 'pixelfed') {
+        if($response->status() != 200 || $json['software']['name'] != 'pixelfed' || $json['openRegistrations'] == false) {
             $instance->approved_at = null;
             $instance->save();
             // todo: remove instance after XX attempts
