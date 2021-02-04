@@ -79,6 +79,12 @@ class FetchFederationInfo extends Command
                 if($t->isOk()) {
                     $body = $t->body();
                     $json = $t->json();
+                    if(!isset($json['openRegistrations'])) {
+                        $i = Instance::whereDomain($host)->first();
+                        $i->approved_at = null;
+                        $i->save();
+                        continue;
+                    }
                     if($json['openRegistrations'] == false) {
                         $i = Instance::whereDomain($host)->first();
                         if($i != null) {
