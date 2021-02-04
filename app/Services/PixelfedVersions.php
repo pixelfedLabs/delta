@@ -23,9 +23,9 @@ class PixelfedVersions
 				$res = Zttp::timeout(30)
 					->get('https://api.github.com/repos/pixelfed/pixelfed/releases');
             } catch (\Zttp\ConnectionException $e) {
-                return self::VERSIONS;
+                return ksort(self::VERSIONS);
             } catch (\GuzzleHttp\Exception\RequestException $e) {
-                return self::VERSIONS;
+                return ksort(self::VERSIONS);
             }
 
             $json = collect($res->json());
@@ -39,6 +39,7 @@ class PixelfedVersions
 
 	public static function latest()
 	{
-		return last(self::VERSIONS);
+		$v = self::get()[0];
+		return $v;
 	}
 }
