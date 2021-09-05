@@ -197,17 +197,17 @@
       <div class="container py-5 d-flex align-items-center justify-content-center" style="min-height: 100vh">
         <div class="my-5 text-center">
           <p class="display-4 font-weight-bold font-ptsn mb-5">
-            <span class="">Create.</span> 
+            <span class="">Create.</span>
             <span class="text-muted">Share. </span>
             <span style="color:#a0aec0">Discover.</span>
           </p>
           <p class="display-4 font-weight-bold font-ptsn mb-5">
-            <span class="">Collect.</span> 
+            <span class="">Collect.</span>
             <span class="text-muted">Follow. </span>
             <span style="color:#a0aec0">Explore.</span>
           </p>
           <p class="display-4 font-weight-bold font-ptsn mb-5">
-            <span class="">Curate.</span> 
+            <span class="">Curate.</span>
             <span class="text-muted">Comment. </span>
             <span style="color:#a0aec0">Like.</span>
           </p>
@@ -300,7 +300,7 @@
           <ul class="list-unstyled text-small">
             <li><a class="text-muted" href="https://write.as/pixelfed" rel="nofollow">Blog</a></li>
             <li><a class="text-muted" href="https://docs.pixelfed.org">Documentation</a></li>
-            <li><a class="text-muted" href="https://mastodon.social/@Pixelfed" rel="nofollow noreferrer noopener">Mastodon</a></li>
+            <li><a class="text-muted" href="https://mastodon.social/@Pixelfed" rel="nofollow noreferrer noopener me">Mastodon</a></li>
             <li><a class="text-muted" href="https://twitter.com/@Pixelfed" rel="nofollow noreferrer noopener">Twitter</a></li>
           </ul>
         </div>
